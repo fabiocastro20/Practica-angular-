@@ -1,0 +1,39 @@
+<h2>{{title}}</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of productos; track $index) {
+        <tr>
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.nombre}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.precio}}</td>
+            <td>{{item.stock}}</td>
+            
+            <td>
+                <button (click)="callModalAction.emit(item);" class="btn btn-warning me-2" type="button"><i
+                        class="fas fa-pen"></i></button>
+                <button (click)="callDeleteAction.emit(item)" class="btn btn-danger" type="button"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+        } @empty {
+        <tr>
+            <td colspan="4">
+                <div class="d-flex justify-content-center align-items-center w-100">
+                    <p class="mb-0">There are not productos</p>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
